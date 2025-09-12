@@ -1,0 +1,54 @@
+FactImp.java 
+import java.rmi.*; 
+public interface Fact extends Remote 
+{ 
+public int factorial(int n) throws RemoteException; 
+ } 
+import java.rmi.*; 
+import java.rmi.server.*; 
+public class FactImp extends UnicastRemoteObject implements Fact 
+{ 
+ public FactImp() throws RemoteException 
+ { } 
+ public int factorial(int n) throws RemoteException 
+ { 
+ if (n==1) return 1; 
+ else 
+ return n * factorial(n-1); 
+ } 
+ } 
+FactServer.java 
+import java.rmi.*; 
+ import java.rmi.server.*; 
+public class FactServer 
+{ 
+ public static void main(String args[]) 
+ { 
+ 
+ try { 
+ FactImp h = new FactImp(); 
+ Naming.rebind("rmi://localhost:4000/Fact",h); 
+ System.out.println("Waiting for a Client at port number 4000..."); 
+ } 
+ catch(Exception e) 
+ { e.printStackTrace(); } 
+ } 
+}
+FactClient.java 
+import java.rmi.*; 
+import java.rmi.server.*; 
+import java.rmi.registry.*; 
+class FactClient 
+{ 
+ public static void main(String args[]) 
+{ 
+ try { 
+ System.setProperty("java.security.policy","all.policy"); 
+ System.setSecurityManager(new RMISecurityManager()); 
+ Fact r = (Fact)Naming.lookup("rmi://localhost:4000/Fact"); 
+ int f = r.factorial(5); 
+ System.out.println("Factorial of 5 = "+f); 
+ } 
+ catch(Exception e) 
+ { e.printStackTrace(); } 
+ } }
