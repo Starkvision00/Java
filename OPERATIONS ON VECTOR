@@ -1,0 +1,33 @@
+import java.util.*; 
+public class VectorTest 
+{
+public static void main(String args[]) 
+{
+Vector <String> v = new Vector <String>(4,2); 
+ v.add("tiger"); 
+ v.add("lion"); 
+ v.add("dog"); 
+ v.add("elephant"); 
+System.out.println("size of the vector is : " +v.size()); 
+System.out.println("vector element is : "+v.capacity()); 
+System.out.println("vector elements is : " +v); 
+Vector v1 = new Vector(1,1); 
+v1.addElement("rat"); 
+v1.addElement("cat"); 
+v1.addElement("deer"); 
+ v.addAll(v1); 
+System.out.println("size after addition : "+v.size()); 
+System.out.println("Capacity after addition : " +v.capacity()); 
+ System.out.println("Elements are : "+v); 
+if(v.contains("tiger")) 
+{
+System.out.println("tiger is present the index : " +v.indexOf("tiger")); 
+}
+else 
+{
+System.out.println("tiger is not present in index"); 
+}
+System.out.println("the firstelements in vector is : "+v.firstElement()); 
+System.out.println("the last elements in vector is : " +v.lastElement()); 
+}
+}
