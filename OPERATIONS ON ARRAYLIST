@@ -1,0 +1,24 @@
+import java.io.*; import java.util.*; 
+class ArrayListTest 
+{
+public static void main(String args[])throws Exception 
+{
+ArrayList a = newArrayList(); 
+System.out.println("initial size of arraylist : "+a.size()); 
+ a.add(new Integer(10)); 
+a.add(new Integer(30)); 
+ a.add(new Integer(50)); 
+a.add(new Integer(70)); 
+a.add(new Integer(80)); 
+System.out.println("\n elements in the arraylist \n "+a); 
+Object x[] = a.toArray(); 
+int sum =0; 
+for (int i =0;i<x.length;i++) 
+sum+=((Integer)x[i]).intValue(); 
+System.out.println("\n sum of arrylistelements : "+sum); 
+ System.out.print("\nelementsinreverse order ["); 
+for(int i =x.length-1;i>=0;i--) 
+System.out.print(x[i]+" "); 
+System.out.print("]"); 
+}
+}
